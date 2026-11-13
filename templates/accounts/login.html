@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block title %}Login | Student Management{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        background: #f4f7fb;
+    }
+
+    .login-wrapper {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 430px;
+        background: white;
+        padding: 35px;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-icon {
+        background: #2563eb;
+        color: white;
+        width: 65px;
+        height: 65px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto auto 15px;
+        font-size: 30px;
+    }
+
+    .login-header h2 {
+        font-weight: bold;
+        color: #172554;
+    }
+
+    .form-control {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .login-btn {
+        background: #2563eb;
+        color: white;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+    }
+
+    .login-btn:hover {
+        background: #1d4ed8;
+    }
+
+    .signup-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="login-wrapper">
+
+    <div class="login-card">
+
+        <div class="login-header">
+
+            <div class="login-icon">
+                🎓
+            </div>
+
+            <h2>Welcome Back</h2>
+
+            <p class="text-muted">
+                Login to your Student Management System
+            </p>
+
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    class="form-control"
+                    placeholder="Enter your username"
+                    required
+                >
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="signup-link">
+
+            <p>
+                Don't have an account?
+
+                <a href="{% url 'signup' %}">
+                    Create Account
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

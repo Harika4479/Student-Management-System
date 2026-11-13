@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Attendance Report</h2>
+
+<form method="GET">
+    <label>Select Date:</label>
+    <input type="date" name="date" value="{{ selected_date }}">
+    <button type="submit">View</button>
+</form>
+
+<div style="display:flex; gap:20px; margin:20px 0;">
+    <div style="background:#e6f7ec; padding:20px; border-radius:10px;">
+        <h3>Present</h3>
+        <h2>{{ present_count }}</h2>
+    </div>
+
+    <div style="background:#fdeaea; padding:20px; border-radius:10px;">
+        <h3>Absent</h3>
+        <h2>{{ absent_count }}</h2>
+    </div>
+</div>
+
+<table border="1" cellpadding="12" cellspacing="0" width="100%">
+    <tr>
+        <th>Student Name</th>
+        <th>Email</th>
+        <th>Status</th>
+    </tr>
+
+    {% for record in attendance_records %}
+    <tr>
+        <td>{{ record.student.student_name }}</td>
+        <td>{{ record.student.email }}</td>
+        <td>{{ record.status }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No attendance records found.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

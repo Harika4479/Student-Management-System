@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Student Management System</h1>
+
+    <p>Welcome back! Here's your dashboard overview.</p>
+
+    <div class="dashboard-cards">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <h2>{{ total_students }}</h2>
+            <p>Registered students</p>
+        </div>
+
+        <div class="card">
+            <h3>Active Students</h3>
+            <h2>{{ active_students }}</h2>
+            <p>Active student records</p>
+        </div>
+
+      <div class="card">
+    <h3>Inactive Students</h3>
+    <h2>{{ inactive_students }}</h2>
+    <p>Need attention</p>
+
+    <a href="{% url 'inactive_students' %}">
+        View Inactive Students
+    </a>
+</div>
+
+        <div class="card">
+            <h3>Total Courses</h3>
+            <h2>{{ total_courses }}</h2>
+            <p>Available courses</p>
+        </div>
+
+    </div>
+
+    <h2>Quick Actions</h2>
+
+    <div class="quick-actions">
+
+        <a href="{% url 'student_list' %}">
+            View All Students
+        </a>
+
+        <a href="{% url 'register' %}">
+            Add New Student
+        </a>
+
+        <a href="{% url 'manage_courses' %}">
+            Manage Courses
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

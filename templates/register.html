@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f4f8;
+            padding: 30px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Student Registration</h2>
+
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <label>Student Name</label>
+        <input type="text" name="student_name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Mobile Number</label>
+        <input type="tel" name="mobile_number"
+               pattern="[0-9]{10}" maxlength="10" required>
+
+        <label>Course</label>
+        <input type="text" name="course" required>
+
+        <label>Profile Image</label>
+        <input type="file" name="profile_image"
+               accept="image/*" required>
+
+        <button type="submit">Register Student</button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'student_list' %}">
+        View All Students
+    </a>
+
+</div>
+
+</body>
+</html>

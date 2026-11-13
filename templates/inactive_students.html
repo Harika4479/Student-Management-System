@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Inactive Students</h2>
+<p>View and reactivate deactivated student profiles.</p>
+
+<div class="card p-4 mt-3">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Course</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.mobile_number }}</td>
+                    <td>{{ student.course }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'toggle_student_status' student.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Activate
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No inactive students found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+</head>
+
+<body>
+
+<h1>Student Details</h1>
+
+<img src="{{ student.profile_image.url }}"
+     width="150" height="150">
+
+<h2>{{ student.student_name }}</h2>
+
+<p>Email: {{ student.email }}</p>
+
+<p>Mobile: {{ student.mobile_number }}</p>
+
+<p>Course: {{ student.course }}</p>
+
+<p>Created Date: {{ student.created_date }}</p>
+
+<form method="POST"
+      action="{% url 'delete_student' student.id %}">
+
+    {% csrf_token %}
+
+    <button type="submit">Delete Student</button>
+
+</form>
+
+<br>
+
+<a href="{% url 'student_list' %}">
+    Back to Student List
+</a>
+
+</body>
+</html>
